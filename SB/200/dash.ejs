@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+
+        <%- include('../heads/MainHead');%>
+
+        <script src="/ToolBox/IDBTools.js" type="text/javascript"></script>
+        <title>200 Dash</title>
+
+    </head>
+
+    <body>
+        <%- include('../headers/MainNav'); %>
+
+        <div id="Dash_Container">
+            <div class="Dash_Nav"> <!--DEPARTMENTAL NAVIGATION-->
+                <div>TOOL BOX</div><!--DASH NAV HEADER-->
+
+                <div>TEAM</div><!--MANAGER VIEW/OVERVIEW-->
+                <div>BIDS</div><!--LIST OF ALL BIDS/CREATE NEW BID-->
+            </div>
+
+            <div class="Dash_Views"> <!--DEPARTMENTAL VIEWS DEPENDING ON SELECTED NAV-->
+                DASH VIEWS
+                <div style="display:none" class="Dash_View"> <!--EMPLOYEE PROFILE TO HOLD TOOLS NEEDED-->
+                    
+                </div>
+                <div style = "display:none" class="Dash_View"> <!--TEAM HOLDS:- EMPLOYEE LIST- GENERAL MESSAGES-->
+                    <table><!--LIST ALL OF THE TEAM MEMBERS FOR THE DEPARTMENT WITH:
+                                   - NAME
+                                   - TITLE
+                                   - CONTACT INFORMATION
+                                -->
+                        <thead>
+                            <th>NAME</th>
+                            <th>TITLE</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Dale Flori</td>
+                                <td>Manager</td>
+                                <td>Email ></td>
+                            </tr>
+                            <tr>
+                                <td>Grant Vogel</td>
+                                <td>Consultant</td>
+                                <td>Email ></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="Dash_View"> <!--ALL ACTIVE BIDS-->
+                    <table class="Bid_Table">
+                        <thead>
+                            <h1>BIDS</h1>
+                        </thead>
+                        <tbody> <!--LOOP THROUGH BID LIST -->
+                            <tr>
+                                <th>NAME</th>
+                                <th>ADRESS</th>
+                                <th>STATUS</th>
+                                <th>OPEN DATE</th>
+                                <th><a href="/200/Forms/CreateNewBid">+</a></th>
+                            </tr>
+                            <% for(x=1;x<5;x++){%>
+                                <tr>
+                                    <% for(y=1;y<3;y++){%>
+                                        <td><%=y%></td>
+                                    <%}%>
+                                </tr>
+                                <%}%>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script>
+        $.ajax({
+            url:"https://vogelheating.sharepoint.com/sites/InformationManagement/_api/web/lists/getbytitle('files')/items",
+            type:"GET",
+            contentType: "applicaiton/json;odata=verbose",
+            headers:{
+                "Accepts":"applicaiton/json;odata=verbose"
+            },
+            success:()=>{console.log('test')}
+        });
+        //var IDB = new IndDB("Bids");
+    </script>
+</html>

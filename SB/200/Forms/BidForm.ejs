@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include('../../heads/MainHead')%>
+
+        <script src="/ToolBox/IDBTools.js" type="text/javascript"></script>
+        <script src="/js/BidTools.js" type = "text/javascript"></script>
+        <script src="/200/JS/BidForms.js" type="text/javascript"></script>
+
+        <title>Commercial HVAC Bid Form</title>
+        <link rel="stylesheet" type="text/css" href="/200/CSS/BidForm.css"/>
+
+    </head>
+
+
+    <body>
+        <!--            BID TOOLS/TABLES (FLOAT RIGHT)               -->
+        <div id="Bid_Tool_Bar">
+            <div id="Bid_Tool_Button">></div> <!--Button stretching the length of the tool bar to open and close it-->
+            <div id="Bid_Tools"><!--RATES AND %MARGINS TABLE-->
+                <div id="Bid_Action_Bar"><!--Action BUTTON Menu-->
+                    <a id="Bid_Form_Submit" href="#">SUBMIT</a>
+                    <a id="Bid_Form_Save" href="#">SAVE</a>
+                    <a id="Bid_Form_Print" href="#">PRINT</a>
+                </div>
+                <div class = "Bid_Tool_Header">LABOR RATES</div>
+                <div id="Bid_LaborRateTable"><!--LABOR RATES-->
+                    <div><div>R - Regular</div> <input type="number" name="R"/></div>
+                    <div><div>S - Shift Work</div> <input type="number" name="S"/></div>
+                    <div><div>SV - Service</div> <input type="number" name="SV"/></div>
+                    <div><div>OT - Over Time</div> <input type="number" name="OT"/></div>
+                    <div><div>DT - Double Time</div> <input type="number" name="DT"/></div>
+                    <div><div>D - Driver </div><input type="number" name="D"/></div>
+                </div>
+                <div class = "Bid_Tool_Header">MARGIN TABLE</div>
+                <div id="Bid_MarginTable">
+                    <div><div>Material</div> <input type="text" placeholder="" name="MaterialMargin"/></div>
+                    <div><div>Labor</div> <input type="text" placeholder="" name="LaborMargin"/></div>
+                    <div><div>Equipment</div> <input type="text" placeholder="" name="EquipmentMargin"/></div>
+                    <div><div>Subcontractor</div> <input type="text" placeholder="" name="SubcontractMargin"/></div>
+                </div>
+
+                <div class = "Bid_Tool_Header">BID SUMMARY</div>
+                <div id="Bid_Summary">
+
+                </div>
+            </div>
+        </div>
+        <!------------------------------------------------------------->
+        
+        <!--                   CUSTOMER INFORMATION                  -->
+        <div id="Bid_Info_Container"> <!--INFORMATION CONTAINER-->
+            <div id="Bid_Info"> <!--CUSTOMER AND BID INFORMATION-->
+                <div><div>Job Name:</div><input type="text" name="JobName"/></div>
+                <div><div>Sales Person:</div><input type="text" name="SalesPerosn"/></div>
+                <div><div>City/Location:</div> <input type="text" name="Location"/></div>
+                <div style="height:20px"></div><!--SPACE IN BETWEEN 2 BLOCKS-->
+                <div><div>Date Due:</div> <input type="date" placeholder="2021-08-19" name="DueDate"/></div>
+                <div><div>Revised Date</div> <input type="date" name="DateRevised"/></div>
+                <div><div>Printed Date:</div> <input type="date" name="DatePrinted"/></div>
+                <div><div>Start Date:</div> <input type="date" name="DateStart"/></div>
+            </div>
+        </div>
+        <!------------------------------------------------------------->
+
+        <!--                 COST INPUT SECTIONS                     -->
+        <div id="Bid_Labor_Cost_Section" class="Bid_Cost_Section"> <!--LABOR SECTION-->
+            <div class="Bid_Cost_Section_Row Bid_Cost_Section_Header"> <!--HEADER FOR THE FOLLOWING ROWS-->
+                <div>Labor</div> <!--TITLE OF ROW-->
+                <div>pcs</div> <!--INPUT BY USER-->
+                <div>hr/per</div> <!--INPUT BY USER-->
+                <div>hours</div> <!--(pcs * hr/per) onchange event to keep calculation up to date-->
+                <div>material</div> <!--INPUT BY USER-->
+                <div>labor</div> <!--(hours * (inputed rate from table)) onchange event watching hours field to keep calculation up to date-->
+                <div>rate</div> <!--LIST OF ALL THE LABOR RATES FROM LABOR RATE TABLE AT TOP OF PAGE-->
+            </div>
+            <!--ROWS CONTINUE DOWN-->
+
+            <!--            SHOP            -->
+            <div class="Bid_Cost_Section_Row"> <!---->
+                <div>QE: Shop</div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+                <div></div>
+                <div><input type="text"/></div>
+                <div></div>
+                <div><select name="LabRateList"></select></div> 
+            </div>
+            <div class="Bid_Cost_Section_Row"> <!---->
+                <div>Field</div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+                <div></div><!--(pcs * hr/per) onchange event to keep calculation up to date-->
+                <div><input type="text"/></div>
+                <div></div><!--(hours * (inputed rate from table)) onchange event watching hours field to keep calculation up to date-->
+                <div><select name="LabRateList"></select></div> <!--LIST OF ALL THE LABOR RATES FROM LABOR RATE TABLE AT TOP OF PAGE-->
+            </div>
+            <!-------------------------------->
+
+            <!--           EQUIPEMNT        -->
+            <div class="Bid_Cost_Section_Row"> <!---->
+                <div>Install VAV's</div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+                <div></div><!--(pcs * hr/per) onchange event to keep calculation up to date-->
+                <div><input type="text"/></div>
+                <div></div><!--(hours * (inputed rate from table)) onchange event watching hours field to keep calculation up to date-->
+                <div><select name="LabRateList"></select></div> <!--LIST OF ALL THE LABOR RATES FROM LABOR RATE TABLE AT TOP OF PAGE-->
+            </div>
+            <div class="Bid_Cost_Section_Row"> <!---->
+                <div>set RTU curbs</div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+                <div></div><!--(pcs * hr/per) onchange event to keep calculation up to date-->
+                <div><input type="text"/></div>
+                <div></div><!--(hours * (inputed rate from table)) onchange event watching hours field to keep calculation up to date-->
+                <div><select name="LabRateList"></select></div> <!--LIST OF ALL THE LABOR RATES FROM LABOR RATE TABLE AT TOP OF PAGE-->
+            </div>
+            <div class="Bid_Cost_Section_Row"> <!---->
+                <div>assist set RTUs</div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+                <div></div><!--(pcs * hr/per) onchange event to keep calculation up to date-->
+                <div><input type="text"/></div>
+                <div></div><!--(hours * (inputed rate from table)) onchange event watching hours field to keep calculation up to date-->
+                <div><select name="LabRateList"></select></div> <!--LIST OF ALL THE LABOR RATES FROM LABOR RATE TABLE AT TOP OF PAGE-->
+            </div>
+            <div class="Bid_Cost_Section_Row"> <!---->
+                <div>install RTU accessories</div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+                <div></div><!--(pcs * hr/per) onchange event to keep calculation up to date-->
+                <div><input type="text"/></div>
+                <div></div><!--(hours * (inputed rate from table)) onchange event watching hours field to keep calculation up to date-->
+                <div><select name="LabRateList"></select></div> <!--LIST OF ALL THE LABOR RATES FROM LABOR RATE TABLE AT TOP OF PAGE-->
+            </div>
+            <div class="Bid_Cost_Section_Row"> <!---->
+                <div>bathroom exhaust fans</div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+                <div></div><!--(pcs * hr/per) onchange event to keep calculation up to date-->
+                <div><input type="text"/></div>
+                <div></div><!--(hours * (inputed rate from table)) onchange event watching hours field to keep calculation up to date-->
+                <div><select name="LabRateList"></select></div> <!--LIST OF ALL THE LABOR RATES FROM LABOR RATE TABLE AT TOP OF PAGE-->
+            </div>
+            <!-------------------------------->
+
+            <!--   DUCT SYSTEM - ROUGH IN   -->
+            <div class="Bid_Cost_Section_Row"> <!---->
+                <div>QE: rough in</div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+                <div></div><!--(pcs * hr/per) onchange event to keep calculation up to date-->
+                <div><input type="text"/></div>
+                <div></div><!--(hours * (inputed rate from table)) onchange event watching hours field to keep calculation up to date-->
+                <div><select name="LabRateList"></select></div> <!--LIST OF ALL THE LABOR RATES FROM LABOR RATE TABLE AT TOP OF PAGE-->
+            </div>
+            <div class="Bid_Cost_Section_Row"> <!---->
+                <div>hang' sprial pipe</div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+                <div></div><!--(pcs * hr/per) onchange event to keep calculation up to date-->
+                <div><input type="text"/></div>
+                <div></div><!--(hours * (inputed rate from table)) onchange event watching hours field to keep calculation up to date-->
+                <div><select name="LabRateList"></select></div> <!--LIST OF ALL THE LABOR RATES FROM LABOR RATE TABLE AT TOP OF PAGE-->
+            </div>
+            <div class="Bid_Cost_Section_Row"> <!---->
+                <div>other rough in</div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+                <div></div><!--(pcs * hr/per) onchange event to keep calculation up to date-->
+                <div><input type="text"/></div>
+                <div></div><!--(hours * (inputed rate from table)) onchange event watching hours field to keep calculation up to date-->
+                <div><select name="LabRateList"></select></div> <!--LIST OF ALL THE LABOR RATES FROM LABOR RATE TABLE AT TOP OF PAGE-->
+            </div>
+            <!-------------------------------->
+
+            <!--    DUCT SYSTEMS - FINISH   -->
+            <div class="Bid_Cost_Section_Row"> <!---->
+                <div>QE: finish</div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+                <div></div><!--(pcs * hr/per) onchange event to keep calculation up to date-->
+                <div><input type="text"/></div>
+                <div></div><!--(hours * (inputed rate from table)) onchange event watching hours field to keep calculation up to date-->
+                <div><select name="LabRateList"></select></div> <!--LIST OF ALL THE LABOR RATES FROM LABOR RATE TABLE AT TOP OF PAGE-->
+            </div>
+            <div class="Bid_Cost_Section_Row"> <!---->
+                <div>install: takeoff, flex, diffuser</div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+                <div></div><!--(pcs * hr/per) onchange event to keep calculation up to date-->
+                <div><input type="text"/></div>
+                <div></div><!--(hours * (inputed rate from table)) onchange event watching hours field to keep calculation up to date-->
+                <div><select name="LabRateList"></select></div> <!--LIST OF ALL THE LABOR RATES FROM LABOR RATE TABLE AT TOP OF PAGE-->
+            </div>
+            <div class="Bid_Cost_Section_Row"> <!---->
+                <div>install: RA lay ins</div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+                <div></div><!--(pcs * hr/per) onchange event to keep calculation up to date-->
+                <div><input type="text"/></div>
+                <div></div><!--(hours * (inputed rate from table)) onchange event watching hours field to keep calculation up to date-->
+                <div><select name="LabRateList"></select></div> <!--LIST OF ALL THE LABOR RATES FROM LABOR RATE TABLE AT TOP OF PAGE-->
+            </div>
+            <div class="Bid_Cost_Section_Row"> <!---->
+                <div>install: surface mount grilles</div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+                <div></div><!--(pcs * hr/per) onchange event to keep calculation up to date-->
+                <div><input type="text"/></div>
+                <div></div><!--(hours * (inputed rate from table)) onchange event watching hours field to keep calculation up to date-->
+                <div><select name="LabRateList"></select></div> <!--LIST OF ALL THE LABOR RATES FROM LABOR RATE TABLE AT TOP OF PAGE-->
+            </div>
+            <div class="Bid_Cost_Section_Row"> <!---->
+                <div>other finish</div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+                <div></div><!--(pcs * hr/per) onchange event to keep calculation up to date-->
+                <div><input type="text"/></div>
+                <div></div><!--(hours * (inputed rate from table)) onchange event watching hours field to keep calculation up to date-->
+                <div><select name="LabRateList"></select></div> <!--LIST OF ALL THE LABOR RATES FROM LABOR RATE TABLE AT TOP OF PAGE-->
+            </div>
+            <!-------------------------------->
+
+            <!--           KITCHEN          -->
+            <div class="Bid_Cost_Section_Row"> <!---->
+                <div>install kitchen exhaust fans & curbs</div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+                <div></div><!--(pcs * hr/per) onchange event to keep calculation up to date-->
+                <div><input type="text"/></div>
+                <div></div><!--(hours * (inputed rate from table)) onchange event watching hours field to keep calculation up to date-->
+                <div><select name="LabRateList"></select></div> <!--LIST OF ALL THE LABOR RATES FROM LABOR RATE TABLE AT TOP OF PAGE-->
+            </div>
+            <div class="Bid_Cost_Section_Row"> <!---->
+                <div>hang () hoods</div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+                <div></div><!--(pcs * hr/per) onchange event to keep calculation up to date-->
+                <div><input type="text"/></div>
+                <div></div><!--(hours * (inputed rate from table)) onchange event watching hours field to keep calculation up to date-->
+                <div><select name="LabRateList"></select></div> <!--LIST OF ALL THE LABOR RATES FROM LABOR RATE TABLE AT TOP OF PAGE-->
+            </div>
+            <div class="Bid_Cost_Section_Row"> <!---->
+                <div>install 16 ga exhaust duct</div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+                <div></div><!--(pcs * hr/per) onchange event to keep calculation up to date-->
+                <div><input type="text"/></div>
+                <div></div><!--(hours * (inputed rate from table)) onchange event watching hours field to keep calculation up to date-->
+                <div><select name="LabRateList"></select></div> <!--LIST OF ALL THE LABOR RATES FROM LABOR RATE TABLE AT TOP OF PAGE-->
+            </div>
+            <div class="Bid_Cost_Section_Row"> <!---->
+                <div>inspection coordination</div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+                <div></div><!--(pcs * hr/per) onchange event to keep calculation up to date-->
+                <div><input type="text"/></div>
+                <div></div><!--(hours * (inputed rate from table)) onchange event watching hours field to keep calculation up to date-->
+                <div><select name="LabRateList"></select></div> <!--LIST OF ALL THE LABOR RATES FROM LABOR RATE TABLE AT TOP OF PAGE-->
+            </div>
+            <!-------------------------------->
+
+            <!-- STARTUP,MANAGEMENT,WARRANTY-->
+            <div class="Bid_Cost_Section_Row"> <!---->
+                <div>Sstart up</div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+                <div></div><!--(pcs * hr/per) onchange event to keep calculation up to date-->
+                <div><input type="text"/></div>
+                <div></div><!--(hours * (inputed rate from table)) onchange event watching hours field to keep calculation up to date-->
+                <div><select name="LabRateList"></select></div> <!--LIST OF ALL THE LABOR RATES FROM LABOR RATE TABLE AT TOP OF PAGE-->
+            </div>
+            <div class="Bid_Cost_Section_Row"> <!---->
+                <div>Joe time</div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+                <div></div><!--(pcs * hr/per) onchange event to keep calculation up to date-->
+                <div><input type="text"/></div>
+                <div></div><!--(hours * (inputed rate from table)) onchange event watching hours field to keep calculation up to date-->
+                <div><select name="LabRateList"></select></div> <!--LIST OF ALL THE LABOR RATES FROM LABOR RATE TABLE AT TOP OF PAGE-->
+            </div>
+            <!-------------------------------->
+        </div>
+
+        <div id="Bid_Equipment_Cost_Section" class="Bid_Cost_Section"><!--MAJOR EQUIPMENT SECTION-->
+            <div class="Bid_Cost_Section_Row Bid_Cost_Section_Header"> <!--HEADER FOR THE FOLLOWING ROWS-->
+                <div>Major Equipment</div> <!--TITLE OF ROW-->
+                <div>vendor</div> <!--INPUT FROM USER-->
+                <div>count</div> <!--INPUT FROM USER-->
+                <div>unit $</div> <!--INPUT FROM USER-->
+                <div>total</div> <!--(count * unit $) onchange event to keep calculation up to date-->
+            </div>
+            <div class="Bid_Cost_Section_Row">
+                <div>RTU, curbs, AHU, CU</div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+                <div></div>
+            </div>
+            <div class="Bid_Cost_Section_Row">
+                <div>VAVs</div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+                <div></div>
+            </div>
+            <div class="Bid_Cost_Section_Row">
+                <div>controls</div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+                <div></div>
+            </div>
+            <div class="Bid_Cost_Section_Row">
+                <div>smoke detectors</div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+                <div></div>
+            </div>
+            <div class="Bid_Cost_Section_Row">
+                <div>air devices</div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+                <div></div>
+            </div>
+            <div class="Bid_Cost_Section_Row">
+                <div>seismic bracing</div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+                <div></div>
+            </div>
+            <div class="Bid_Cost_Section_Row">
+                <div>exhaust fans</div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+                <div></div>
+            </div>
+            <div class="Bid_Cost_Section_Row">
+                <div>louvers</div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+                <div></div>
+            </div>
+            <div class="Bid_Cost_Section_Row">
+                <div>fir dampers, fire/smoke dampers</div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+                <div></div>
+            </div>
+            <div class="Bid_Cost_Section_Row">
+                <div>IRTH</div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+                <div></div>
+            </div>
+            <div class="Bid_Cost_Section_Row">
+                <div>EUH</div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+                <div></div>
+            </div>
+            <div class="Bid_Cost_Section_Row">
+                <div>hoods, MAU, KEF</div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+                <div></div>
+            </div>
+            <div class="Bid_Cost_Section_Row">
+                <div>pre-fabricated grease duct</div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+                <div></div>
+            </div>
+            <div class="Bid_Cost_Section_Row">
+                <div>sprial pipe</div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+                <div></div>
+            </div>
+        </div>
+
+        <div id="Bid_Sub_Cost_Section" class="Bid_Cost_Section"><!--SUBCONTRACTORS SECTION-->
+            <div class="Bid_Cost_Section_Row Bid_Cost_Section_Header">
+                <div>Subcontractors</div> <!--TITLE OF ROW-->
+                <div>contractor</div> <!--INPUT BY CLIENT-->
+                <div>bid</div> <!--INPUT BY CLIENT-->
+            </div>
+            <div class="Bid_Cost_Section_Row">
+                <div>hoist</div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+            </div>
+            <div class="Bid_Cost_Section_Row">
+                <div>controls</div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+            </div>
+            <div class="Bid_Cost_Section_Row">
+                <div>pipe</div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+            </div>
+            <div class="Bid_Cost_Section_Row">
+                <div>insulte: duct</div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+            </div>
+            <div class="Bid_Cost_Section_Row">
+                <div>insulate: pipe</div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+            </div>
+            <div class="Bid_Cost_Section_Row">
+                <div>man lift</div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+            </div>
+            <div class="Bid_Cost_Section_Row">
+                <div>air balance</div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+            </div>
+            <div class="Bid_Cost_Section_Row">
+                <div>roof patching</div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+            </div>
+            <div class="Bid_Cost_Section_Row">
+                <div>hole cutting</div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+            </div>
+            <div class="Bid_Cost_Section_Row">
+                <div>seismic drawings</div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+            </div>
+            <div class="Bid_Cost_Section_Row">
+                <div>structural drawings</div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+            </div>
+            <div class="Bid_Cost_Section_Row">
+                <div>mechanical drawings</div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+            </div>
+            <div class="Bid_Cost_Section_Row">
+                <div>performance bond</div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+            </div>
+            <div class="Bid_Cost_Section_Row">
+                <div>permits</div>
+                <div><input type="text"/></div>
+                <div><input type="text"/></div>
+            </div>
+        </div>
+        <!------------------------------------------------------------->
+
+        <!--                 COST SUMMARY SECTOINS                 -->
+        <div id="Bid_Cost_Sumry"><!--COST SUMMARY-->
+            <div > <!--SECTION HEADER-->
+                <div>Totals:</div>
+                <div>total</div>
+                <div>profit</div>
+                <div>sum</div>
+            </div>
+
+            <div id="Bid_Labor_Sumry">
+                <div>Labor</div>
+                <div name="totalCost"></div><!--total-->
+                <div name="totalProfit"></div><!--profit-->
+                <div name="sumTotal"></div><!--sum-->
+            </div>
+            <div id="Bid_Material_Sumry">
+                <div>Material (w/tax)</div>
+                <div name="totalCost"></div><!--total-->
+                <div name="totalProfit"></div><!--profit-->
+                <div name="sumTotal"></div><!--sum-->
+            </div>
+            <div id="Bid_Equip_Sumry">
+                <div>Equipment (w/tax)</div>
+                <div name="totalCost"></div><!--total-->
+                <div name="totalProfit"></div><!--profit-->
+                <div name="sumTotal"></div><!--sum-->
+            </div >
+            <div id="Bid_Sub_Sumry">
+                <div>Subcontractors</div>
+                <div name="totalCost"></div><!--total-->
+                <div name="totalProfit"></div><!--profit-->
+                <div name="sumTotal"></div><!--sum-->
+            </div>
+        </div>
+        <!------------------------------------------------------------->
+
+        <div style="height:300px;"></div>
+
+    </body>
+
+
+    <script>
+
+        var IDB =new IndDB("Bids");
+        BidSetup();
+        LSa = [];
+        LS.id = 4;
+        LSa.push(LS);
+
+        localStorage.setItem("BID1", JSON.stringify(LS));
+        ls2 = JSON.parse(localStorage.getItem("BID1"));
+        ls2.id = 22;
+        LSa.push(ls2);
+        
+        localStorage.setItem("BID1",JSON.stringify(LSa));
+
+        lsa2 = JSON.parse(localStorage.getItem("BID1"));
+
+        console.log(lsa2[0].id);
+        console.log(lsa2[1].id);
+    </script>
+</html>

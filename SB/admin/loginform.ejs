@@ -1,0 +1,21 @@
+
+<%- include('../heads/MainHead')%>
+
+<div>
+    <div id="login-form">
+      <div>User Name</div><input id="login-form-username"/>
+      <div>Password</div><input id="login-form-password"/>
+      <div id="login-form-submit">LOGIN</div>
+    </div>
+</div>
+
+<script>
+  document.getElementById('login-form-submit').addEventListener('dblclick',(ele)=>{
+    $.post('http://localhost:8010/proxy/api/login',{
+      user:document.getElementById('login-form-username').value,
+      pswrd:document.getElementById('login-form-password').value
+    },(data,status)=>{
+      console.log(data);
+    })
+  });
+</script>

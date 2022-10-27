@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+    <head lang='en'>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <title>Performance Verification</title>
+
+        <%- include('../../heads/MainHead');%>
+
+        <link rel="stylesheet" type="text/css" href="/350/CSS/RR_PerfVerif.css" />
+        <link rel="stylesheet" type="text/css" href="/350/CSS/STD_Form_Template.css"/>
+        
+
+    </head>
+    <body>
+        <%- include('../../headers/MainNav'); %> <!--Include the main navigation for the app-->
+
+        <div id="Templ_Container"><!--Template to wrap the specific content of the page.-->
+            <div class="Templ_Header"><img src="/350/PICS/Performance Verification Header.jpg"/>
+                <div></div>
+                <div></div>
+            </div>
+
+            <!--Begining display of Customer Scale Groups
+                Retrieve data from form previously filled out by customer and consultant.
+                This form displays the results on a visual scale in there respective groups-->
+            <div class="Comfort_Scale_Group"> <!--TEMPERATURE SCALE-->
+                <div class = "Comfort_Scale_Group_Image">
+                    <img src="/350/PICS/Temperature Pic.jpg" title="t"/>
+                    <div>TEMPERATURE</div>
+                </div> <!--Spans the height of the entire Section-->
+                <div class="Comfort_Scale_Item_Container">
+                    <div class= "Comfort_Scale_Item"> <!--Group Items get stacked on top of each other just right of image-->
+                        <div class ="Comfort_Scale_Item_Header">HEATING SEASON</div>
+                        <div class ="Comfort_Scale_Item_Bar">
+                            <div class="Comfort_Scale_Bar CSB_Heating">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div> <!--The bar itself-->
+                            <div class= "Comfort_Scale_Bar_Headers">
+                                <div>ON - OFF</div>
+                                <div>MORE EVEN - MORE COZY</div>
+                                <div>PRECISE - MOST EVEN & COZY HEAT</div>
+                            </div><!--The 'headers' below the bar to describe the sections of bar-->
+                        </div>
+                    </div>
+                    <div class= "Comfort_Scale_Item"> <!--Group Items get stacked on top of each other just right of image-->
+                        <div class="Comfort_Scale_Item_Header">COOLING SEASON</div>
+                        <div class ="Comfort_Scale_Item_Bar">
+                            <div class="Comfort_Scale_Bar CSB_Cooling">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div> <!--The bar itself-->
+                            <div class= "Comfort_Scale_Bar_Headers">
+                                <div>ON - OFF</div>
+                                <div>MORE EVEN - MORE COZY</div>
+                                <div>PRECISE - MOST EVEN & COZY HEAT</div>
+                            </div><!--The 'headers' below the bar to describe the sections of bar-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="Comfort_Scale_Group"> <!--HUMIDITY CONTROL SCALE-->
+                <div class="Comfort_Scale_Group_Image">
+                    <img  src="/350/PICS/Humidity Pic.jpg"/>
+                    <div>HUMIDITY CONTROL</div>
+                </div> <!--Spans the height of the entire Section-->
+                <div class="Comfort_Scale_Item_Container">
+                    <div class= "Comfort_Scale_Item"> <!--Group Items get stacked on top of each other just right of image-->
+                        <div class="Comfort_Scale_Item_Header">HEATING SEASON</div>
+                        <div class ="Comfort_Scale_Item_Bar">
+                            <div class="Comfort_Scale_Bar CSB_Heating">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div> <!--The bar itself-->
+                            <div class= "Comfort_Scale_Bar_Headers">
+                                <div> - </div>
+                                <div>ENHANCED - MANAGED</div>
+                                <div>PRECISE - MANAGED - MOST ACCURATE</div>
+                            </div><!--The 'headers' below the bar to describe the sections of bar-->
+                        </div>
+                    </div>
+                    <div class= "Comfort_Scale_Item"> <!--Group Items get stacked on top of each other just right of image-->
+                        <div class="Comfort_Scale_Item_Header">COOLING SEASON</div>
+                        <div class ="Comfort_Scale_Item_Bar">
+                            <div class="Comfort_Scale_Bar CSB_Cooling">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div> <!--The bar itself-->
+                            <div class= "Comfort_Scale_Bar_Headers">
+                                <div> - </div>
+                                <div>ENHANCED - MANAGED</div>
+                                <div>PRECISE - MANAGED - MOST ACCURATE</div>
+                            </div><!--The 'headers' below the bar to describe the sections of bar-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="Comfort_Scale_Group"> <!--ENERGY CONSUMPTION SCALE-->
+                <div class="Comfort_Scale_Group_Image" >
+                    <img src="/350/PICS/Energy Consumption Pic.jpg"/>
+                    <div>ENERGY CONSUMPTION</div>
+                </div> <!--Spans the height of the entire Section-->
+                <div class="Comfort_Scale_Item_Container">
+                    <div class= "Comfort_Scale_Item"> <!--Group Items get stacked on top of each other just right of image-->
+                        <div class="Comfort_Scale_Item_Header">HEATING SEASON</div>
+                        <div class ="Comfort_Scale_Item_Bar">
+                            <div class="Comfort_Scale_Bar CSB_Heating">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div> <!--The bar itself-->
+                            <div class= "Comfort_Scale_Bar_Headers">
+                                <div>STANDARD EFFICIENCY</div>
+                                <div>STANDARD EFFICIENCY +</div>
+                                <div>LOWER ENERY CONSUPMTION</div>
+                                <div>LOWEST ENERGY CONSUMPTION & MANAGEMENT</div>
+                            </div><!--The 'headers' below the bar to describe the sections of bar-->
+                        </div>
+                    </div>
+                    <div class= "Comfort_Scale_Item"> <!--Group Items get stacked on top of each other just right of image-->
+                        <div class="Comfort_Scale_Item_Header">COOLING SEASON</div>
+                        <div class ="Comfort_Scale_Item_Bar">
+                            <div class="Comfort_Scale_Bar CSB_Cooling">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div> <!--The bar itself-->
+                            <div class= "Comfort_Scale_Bar_Headers">
+                                <div>STANDARD EFFICIENCY</div>
+                                <div>STANDARD EFFICIENCY +</div>
+                                <div>LOWER ENERY CONSUPMTION</div>
+                                <div>LOWEST ENERGY CONSUMPTION & MANAGEMENT</div>
+                            </div><!--The 'headers' below the bar to describe the sections of bar-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="Comfort_Scale_Group"> <!--SYSTEM PROTECTION SCALE-->
+                <div class="Comfort_Scale_Group_Image" >
+                    <img src="/350/PICS/System Protection Pic.jpg"/>
+                    <div>SYSTEM PROTECTION</div>
+                </div> <!--Spans the height of the entire Section-->
+                <div class="Comfort_Scale_Item_Container">
+                    <div class= "Comfort_Scale_Item"> <!--Group Items get stacked on top of each other just right of image-->
+                        <div class="Comfort_Scale_Item_Header">HEATING SEASON</div>
+                        <div class ="Comfort_Scale_Item_Bar">
+                            <div class="Comfort_Scale_Bar CSB_Heating">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div> <!--The bar itself-->
+                            <div class= "Comfort_Scale_Bar_Headers">
+                                <div>NEW SAFETY SWITCH & POWER WIRING TO UNIT</div>
+                                <div>POWER SURGE PROTECTION</div>
+                                <div>POWER SURGE PROTECTION + MONITORING</div>
+                            </div><!--The 'headers' below the bar to describe the sections of bar-->
+                        </div>
+                    </div>
+                    <div class= "Comfort_Scale_Item"> <!--Group Items get stacked on top of each other just right of image-->
+                        <div class="Comfort_Scale_Item_Header">COOLING SEASON</div>
+                        <div class ="Comfort_Scale_Item_Bar">
+                            <div class="Comfort_Scale_Bar CSB_Cooling">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div> <!--The bar itself-->
+                            <div class= "Comfort_Scale_Bar_Headers">
+                                <div>NEW SAFETY SWITCH & POWER WIRING TO UNIT</div>
+                                <div>POWER SURGE PROTECTION</div>
+                                <div>POWER SURGE PROTECTION + MONITORING</div>
+                            </div><!--The 'headers' below the bar to describe the sections of bar-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="Comfort_Scale_Group"> <!--SYSTEM PROTECTION SCALE-->
+                <div class="Comfort_Scale_Group_Image" >
+                    <img src="/350/PICS/Warr & Guar Pic.jpg"/>
+                    <div>WARRANTY & GUARUNTEES</div>
+                </div> <!--Spans the height of the entire Section-->
+                <div class="Comfort_Scale_Item_Container">
+                    <div class= "Comfort_Scale_Item"> <!--Group Items get stacked on top of each other just right of image-->
+                        <div class="Comfort_Scale_Item_Header">HEATING SEASON</div>
+                        <div class ="Comfort_Scale_Item_Bar">
+                            <div class="Comfort_Scale_Bar CSB_Heating">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div> <!--The bar itself-->
+                            <div class= "Comfort_Scale_Bar_Headers">
+                                <div>20 / 10 / 1 - LIMITED</div>
+                                <div>20 / 10 / 2 - PARTIEAL</div>
+                                <div>LIFE / 10 / 5 - PARTIAL</div>
+                                <div>LIFE / 12 / 12 FULL COVERAGE</div>
+                            </div><!--The 'headers' below the bar to describe the sections of bar-->
+                        </div>
+                    </div>
+                    <div class= "Comfort_Scale_Item"> <!--Group Items get stacked on top of each other just right of image-->
+                        <div class="Comfort_Scale_Item_Header">COOLING SEASON</div>
+                        <div class ="Comfort_Scale_Item_Bar">
+                            <div class="Comfort_Scale_Bar CSB_Cooling">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div> <!--The bar itself-->
+                            <div class= "Comfort_Scale_Bar_Headers">
+                                <div>20 / 10 / 1 - LIMITED</div>
+                                <div>20 / 10 / 2 - PARTIEAL</div>
+                                <div>LIFE / 10 / 5 - PARTIAL</div>
+                                <div>LIFE / 12 / 12 FULL COVERAGE</div>
+                            </div><!--The 'headers' below the bar to describe the sections of bar-->
+                        </div>
+                    </div>
+                    <div class= "Comfort_Scale_Item"> <!--Group Items get stacked on top of each other just right of image-->
+                        <div class="Comfort_Scale_Item_Header">CONTROLS / ACCESORIES</div>
+                        <div class ="Comfort_Scale_Item_Bar">
+                            <div class="Comfort_Scale_Bar" Style="background-image: linear-gradient(to right, rgb(252, 249, 249),rgb(7, 110, 29));">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div> <!--The bar itself-->
+                            <div class= "Comfort_Scale_Bar_Headers">
+                                <div>1</div>
+                                <div>2</div>
+                                <div>5</div>
+                            </div><!--The 'headers' below the bar to describe the sections of bar-->
+                        </div>
+                    </div>
+                    <div class= "Comfort_Scale_Item"> <!--Group Items get stacked on top of each other just right of image-->
+                        <div class="Comfort_Scale_Item_Header">MANUFACTUREER REGISTRATION</div>
+                        <div class ="Comfort_Scale_Item_Bar">
+                            <div class="Comfort_Scale_Bar" style="background-image: linear-gradient(to right, rgb(252, 249, 249),rgb(255, 146, 4));">
+                                <div></div>
+                                <div></div>
+                            </div> <!--The bar itself-->
+                            <div class= "Comfort_Scale_Bar_Headers">
+                                <div>HOMEOWNER COMPLETES</div>
+                                <div>DEALER COMPLETES WITHIN APPROVED TIMELINE</div>
+                            </div><!--The 'headers' below the bar to describe the sections of bar-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="Comfort_Scale_Group"> <!--OTHER FACTOR SCALE-->
+                <div class="Comfort_Scale_Group_Image" >
+                    <img src="/350/PICS/Other Factors Pic.jpg"/>
+                    <div>OTHER FACTORS</div>
+                </div> <!--Spans the height of the entire Section-->
+                <div class="Comfort_Scale_Item_Container">
+                    <div class= "Comfort_Scale_Item"> <!--Group Items get stacked on top of each other just right of image-->
+                        <div class="Comfort_Scale_Item_Header">WINDOWS / DOORS</div>
+                        <div class ="Comfort_Scale_Item_Bar">
+                            <div class="Comfort_Scale_Bar" style="background-image: linear-gradient(to right, rgb(252, 249, 249),rgb(248, 189, 27));">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div> <!--The bar itself-->
+                            <div class= "Comfort_Scale_Bar_Headers">
+                                <div>SINGLE PANE OVER 40 YEARS OLD</div>
+                                <div>NON-ENERGY STAR OR FAILED SEALS OVER 20 YEARS OLD</div>
+                                <div>MOST OPERATIONAL & MOST ENERGY STAR</div>
+                                <div>FULLY OPERATIONAL & ALL ENERGY STAR RATED</div>
+                            </div><!--The 'headers' below the bar to describe the sections of bar-->
+                        </div>
+                    </div>
+                    <div class= "Comfort_Scale_Item"> <!--Group Items get stacked on top of each other just right of image-->
+                        <div class="Comfort_Scale_Item_Header">INSULATION</div>
+                        <div class ="Comfort_Scale_Item_Bar">
+                            <div class="Comfort_Scale_Bar" style="background-image: linear-gradient(to right, rgb(252, 249, 249),rgb(64, 7, 110));">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div> <!--The bar itself-->
+                            <div class= "Comfort_Scale_Bar_Headers">
+                                <div>R30 OR BELOW</div>
+                                <div>R38 PLUS</div>
+                                <div>R49 PLUS</div>
+                                <div>AIR SEALED AND R49 PLUS</div>
+                            </div><!--The 'headers' below the bar to describe the sections of bar-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="Comfort_Scale_Group"><!--PERFORMANCE CHECKLIST-->
+                <div class="Comfort_Scale_Group_Image">
+                    <img src="/350/PICS/Performance Checklist Pic.jpg"/>
+                    <div>PERFORMANCE CHECKLIST</div>
+                </div>
+                <div class="Comfort_CheckList_Container">
+                    <div class="Comfort_CheckList"><!--GROUP 1-->
+                        <div class="Comfort_CheckList_Header"><!--CHECKLIST HEADER-->
+                            <div>N/A</div>
+                            <div>YES</div>
+                        </div>
+                        <div class="Comfort_CheckBox">
+                            <div></div>
+                            <div></div>
+                            <div>AIRFLOW COMMISSIONING</div>
+                        </div>
+                        <div class="Comfort_CheckBox">
+                            <div></div>
+                            <div></div>
+                            <div>TEMPERATURE SAFETY CHECK</div>
+                        </div>
+                        <div class="Comfort_CheckBox">
+                            <div></div>
+                            <div></div>
+                            <div>CONTROLS / ACCESSORIES - DESIGN SHEET</div>
+                        </div>
+                        <div class="Comfort_CheckBox">
+                            <div></div>
+                            <div></div>
+                            <div>AIR QUALITY ENHANCEMENTS SET UP</div>
+                        </div>
+                    </div>
+                    <div class="Comfort_CheckList"><!--GROUP 2-->
+                        <div><!--CHECKLIST HEADER-->
+                            <div>N/A</div>
+                            <div>YES</div>
+                        </div>
+                        <div class="Comfort_CheckBox">
+                            <div></div>
+                            <div></div>
+                            <div>EFFICIENCY VERIFICATION</div>
+                        </div>
+                        <div class="Comfort_CheckBox">
+                            <div></div>
+                            <div></div>
+                            <div>WARRANTY REGISTRATION</div>
+                        </div>
+                        <div class="Comfort_CheckBox">
+                            <div></div>
+                            <div></div>
+                            <div>SEASONAL FIRST YEAR - BREAK IN ADJUSTMENTS</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="Templ_Dividers"> <!--DIVIDER BEFORE FOOTER-->
+                <div></div>
+                <div></div>
+            </div>
+            <div id="Templ_Footer">
+                    <img src="/350/PICS/Performance Verification Footer Pic.jpg"/>
+                    <div id=Comfort_Scale_CustomerInfo>
+                        <div><input placeholder=""/></div>
+                        <div>CUSTOMER NAME</div>
+                        <div><input placeholder=""></div>
+                        <div>INSTALL DATE</div>
+                        <div><input type="text"/></div>
+                        <div>JOB NUMBER</div>
+                        <div><input type="text"/></div>
+                        <div>SIGNATURE</div>
+                    </div>
+            </div>
+        </div>
+
+    </body>
+</html>

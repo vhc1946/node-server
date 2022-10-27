@@ -1,0 +1,53 @@
+/*
+    Standard style for all Vogel Form Templates
+*/
+/* 
+When trying to print with display through HDMI, media was big. Do not know how to fix this 
+@media print{
+        body{}
+}*/
+@page{
+    margin: 2cm;
+    size:protrait;
+} 
+
+body{
+    width: 1500px;
+}
+
+.Templ_Dividers div{
+    position: relative;
+    background-color:rgb(221, 14, 14);
+    height:20px;
+    width:100%;
+}
+.Templ_Dividers div:nth-child(1){
+    background-color:rgb(41, 12, 146);
+
+}
+#Templ_Container{
+    width:1500px;
+    padding:10px;
+
+}
+.Templ_Header{
+    position: relative;
+    width:100%;
+}
+.Templ_Header img{
+    justify-content: center;
+    width:100%;
+}
+.Templ_Header div{
+    background-color:rgb(221, 14, 14);
+    height:20px;
+}
+.Templ_Header div:nth-child(3){
+    background-color:rgb(41, 12, 146);
+}
+
+#Templ_Footer{
+    position:relative;
+    width:100%;
+    display:inline-flex;
+}

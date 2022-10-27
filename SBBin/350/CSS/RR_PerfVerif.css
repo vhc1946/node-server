@@ -1,0 +1,116 @@
+/*
+    CSS class created with the Residential Replacement Performance Verified form
+*/
+
+.Comfort_Scale_Group{
+    display:flex;
+    margin: 30px 20px 0px 20px;
+    padding-bottom:30px;
+    border-bottom: 1px solid rgb(10, 10, 10);
+}
+.Comfort_Scale_Group_Image{
+    width:400px;
+    margin-left:10px;
+    padding:5px 0;
+}
+.Comfort_Scale_Group_Image img{
+    width:200px;
+    height:200px;
+    object-fit: cover;
+}
+.Comfort_Scale_Group_Image div{
+    font-size: 30pt;
+}
+.Comfort_Scale_Item_Container{
+    flex:1 100%;
+    display: flex;
+    flex-direction: column;
+}
+.Comfort_Scale_Item{
+    flex:1 100%;
+    
+    display:inline-flex;
+}
+.Comfort_Scale_Item_Header{
+    width: 300px;
+    font-size: 20pt;
+    padding:10px 10px;
+    text-align: center;
+    
+}
+.Comfort_Scale_Item_Bar{
+    flex:1;
+}
+
+.Comfort_Scale_Bar{
+    height:40px;
+    width:100%;
+    display:inline-flex;
+    border-right:1px solid rgb(10, 10, 10);
+    border-left: 1px solid rgb(10, 10, 10);
+}
+.CSB_Heating{
+    background-image: linear-gradient(to right, rgb(252, 249, 249),rgb(247, 18, 18));
+
+}
+.CSB_Cooling{
+    background-image: linear-gradient(to right, rgb(252, 249, 249),rgb(41, 12, 146));
+}
+/*  Describes the groups that divide the bar
+    Will match the number of Headers
+*/
+.Comfort_Scale_Bar div{
+    display: inline-block;
+    flex:1 100%;
+    margin: 0px;
+    border-right:1px solid rgb(10, 10, 10);
+    border-left:1px solid rgb(10, 10, 10);
+}
+
+.Comfort_Scale_Bar_Headers{
+    width:100%;
+    display:inline-flex;
+}
+.Comfort_Scale_Bar_Headers div{
+    text-align: center;
+    display: inline-block;
+    flex: 1 100%;
+    margin: 0px;
+    font-size: 14px;
+}
+
+.Comfort_CheckList_Container{
+    flex:1;
+    margin-left:230px;
+}
+.Comfort_CheckList{
+    display:inline-grid;
+
+}
+.Comfort_CheckList div{
+    display:inline-flex;
+}
+.Comfort_CheckList div div{
+    font-size: 10pt;
+    width:15px;
+    margin-bottom: 20px;
+    margin-right:20px;
+    height:10px;
+    padding:2px 0;
+}
+.Comfort_CheckBox div{
+    border: 3px solid rgb(10, 10, 10);
+}
+.Comfort_CheckBox div:nth-last-child(1){
+    font-size: 14pt;
+    width:300px;
+    height:20px;
+    border:0;
+}
+
+#Comfort_Scale_CustomerInfo div input{
+    border:0;
+    border-bottom:2px solid rgb(10, 10, 10);
+    width:400px;
+    margin-top:10px;
+}

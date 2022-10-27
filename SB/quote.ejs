@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <style>
+            div{
+                border: 1px solid black;
+            }
+
+            .quote-options-right{
+                display: inline-flex;
+            }
+            .quote-cont{
+                display:grid;
+                grid-template-columns: 1fr 10fr 1fr;
+                grid-auto-columns:auto;
+                height:100%;
+
+            }
+            
+            .quote-cont-sidenav{
+                display: flex;
+                height:300px;
+            }
+            .quote-cont-sidenav-right{
+                justify-content: flex-end;
+            }
+            .quote-cont-sidenav-button{
+                writing-mode:vertical-rl;
+            }
+
+            #quoteview-estimate{
+                display:grid;
+                grid-template-columns: 1fr 4fr 2fr;
+            }
+            #quote-modifiers-nav{
+                display: inline-flex;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="quote-options">
+            <div class="quote-options-right">
+                <div>SAVE</div>
+                <div>OPTIONS</div>
+                <div>KEY</div>
+            </div>
+        </div>
+
+
+        <div class="quote-cont"><!---->
+            <!-- quote-cont
+
+                right and left will contain selectors for views.
+                 as items are selected they are moved from right
+                 to left (vise-versa).
+            -->
+            <div class="quote-cont-sidenav quote-cont-sidenav-left">
+                <div class="quote-cont-sidenav-button quoteview-settings-button">SETTINGS</div>
+                <div class="quote-cont-sidenav-button quoteview-customer-button">CUSTOMER</div>
+                <div class="quote-cont-sidenav-button quoteview-estimate-button" style="display:none">ESTIMATE</div>
+            </div>
+            <div class="quote-cont-view">
+                <!--SETTINGS VIEW -----------------------------------------------------------
+                    
+                -->
+                <div id="quoteview-settings" style="display: none;">
+                    
+                </div>
+                <!--CUSTOMER VIEW -----------------------------------------------------------
+                
+                -->
+                <div id="quoteview-customer" style="display: none;">
+                    <div>
+                        <div>ADDRESS</div>
+                        <div>CONTACTS</div>
+                        <div>NOTES</div>
+                        <div>SERVICE</div>
+                    </div>
+                </div>
+                <!--------------------------------------------------------------------------->
+                <!--------------------------------------------------------------------------->
+                <!--ESTIMATE VIEW -----------------------------------------------------------
+                    
+                -->
+                <div id="quoteview-estimate">
+                    <div class="quote-estimate-price">
+                        <table>
+                            <tr><!--PRICE ROW-->
+                                <td>4000</td>
+                                <td>3000</td>
+                                <td>2000</td>
+                                <td>1000</td>
+                            </tr>
+                            <tr><!--TIER NAMES-->
+                                <td>BEST</td>
+                                <td>BETTER</td>
+                                <td>GOOD</td>
+                                <td>BASE</td>
+                            </tr>
+
+                            <!-- TIER INDICATORS
+                                The following rows will match the amount of
+                                 quoted items, and indicate (in a give tier)
+                                 where the item "fits" best
+                            -->
+                        </table>
+                    </div>
+                    <div class="quote-estimate-items">
+                        <table id="estimate-item-table">
+                            <tr>
+                                <td>STYLE</td>
+                                <td>WIDTH</td>
+                                <td>HEIGHT</td>
+                                <td>WEIGHT</td>
+                            </tr>
+                            <tr>
+                                <td>Style 1</td>
+                                <td>20</td>
+                                <td>40</td>
+                                <td>100</td>
+                            </tr>
+                            <tr>
+                                <td>Style 2</td>
+                                <td>30</td>
+                                <td>40</td>
+                                <td>200</td>
+                            </tr>
+                            <tr>
+                                <td>Style 3</td>
+                                <td>50</td>
+                                <td>60</td>
+                                <td>500</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="quote-estimate-modifiers">
+                        <!-- Modifiers
+                            There may be different categories of
+                             modification. A nav bar will be stacked
+                             on a view. The user will choose an
+                             item from the nav bar to view different
+                             modifications.
+                        -->
+                        <div id="quote-modifiers-nav">
+                            <div id="quote-modifier-button-glass">GLASS</div>
+                            <div id="quote-modifier-button-trims">TRIM</div>
+                        </div>
+                        <div class="modifier-views">
+                            <div id="modview-glass">
+                                <table>
+                                    <tr>
+                                        <td>TEMPERED</td>
+                                        <td>OBSCURE</td>
+                                        <td>
+                                            INTERNAL GRID
+                                            <div>
+                                                <div>1</div>
+                                                <div>1</div>
+                                                <div>1</div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div id="modview-trims" style="display:none">
+                                <div>TRIMS</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--------------------------------------------------------------------------->
+            </div>
+            <div class="quote-cont-sidenav quote-cont-sidenav-right">
+                <div class="quote-cont-sidenav-button quoteview-settings-button" style="display:none">SETTINGS</div>
+                <div class="quote-cont-sidenav-button quoteview-customer-button" style="display:none">CUSTOMER</div>
+                <div class="quote-cont-sidenav-button quoteview-estimate-button">ESTIMATE</div>
+
+            </div>
+        </div>
+    </body>
+
+    <script>
+
+
+        var qdom = {
+            quote: {
+                container: "quote-cont",
+                nav:{
+                    sidebar: "quote-cont-sidenav",
+                    sidebuttons: "quote-cont-sidenav-button",
+                    right: "quote-cont-sidenav-right",
+                    left: "quote-cont-sidenav-left",
+                    viewbuttons:{
+                        settings: "quoteview-settings-button",
+                        customer: "quoteview-customer-button",
+                        estimate: "quoteview-estimate-button"
+                    }
+                },
+                main:{
+                    container: "quote-view",
+                    views:{
+                        settings: "quoteview-settings",
+                        customer: "quoteview-customer",
+                        estimate: "quoteview-estimate"
+                    },
+                    estimate:{
+                        itemtable: "estimate-item-table"
+                    },
+                    modifier:{
+                        nav:{
+                            bar: "quote-modifiers-nav",
+                            selected: "quote-modifier-nav-selected",
+                            button: "quote-modifier-nav-button",
+                            buttons:{
+                                glass: "quote-modifier-button-glass",
+                                trims: "quote-modifier-button-trims"
+                            }
+                        },
+                        views:{
+                            glass: "modview-glass",
+                            trims: "modview-trims"
+                        }
+                    }
+                }
+            }
+        }
+        
+        /* ACTIONS ////////////////////////////////////////////////////////////////////////////
+        */
+
+        /* VIEW NAV  ///////////////////////////////////////////////////////////
+            Function to setup navigation involving two side bars. The end goal
+             should be as buttons are clicked, corresponding views are opened.
+             As views are opened,the button will move to the other side. The 
+             buttons will move like pages in a book
+            
+            METHOD:
+            Loop through all the buttons in the side navs and set a click event
+             to each
+        */
+        var setSideNavButtons = ()=>{
+            var navbut = document.getElementsByClassName(qdom.quote.nav.sidebuttons);
+            for(x=0;x<navbut.length;x++){
+                navbut[x].addEventListener('click',SidNavSelector);
+            }
+        }
+
+        /* Side Nav Selector
+            Function place in a 'click' event.
+            METHOD:
+            Accept the element clicked on, find the index of it in the sidenav.
+             Use this index to select the corresponding view.
+
+            If the 'parent' of the button is the LEFT side nav
+        */
+        var SidNavSelector =(ele)=>{
+            var clkSide = ele.target.parentNode;
+            var navbutts = clkSide.children;
+            var LR; //boolean: TRUE = left side
+                    //         FALSE = right side
+            var bcount; //iterator for search
+            var found = false;
+
+            console.log('Side Nav Clicked...');
+            
+            if(clkSide.classList.contains(qdom.quote.nav.left)){
+                LR = true;
+                // start search at beggining of array and work up
+                bcount = 0;
+            }else if(clkSide.classList.contains(qdom.quote.nav.right)){
+                LR = false;
+                // start search at end of the array and work down
+                bcount = navbutts.length-1;
+            }else{
+                console.log('NO NAV SELECTED...');
+                return;
+            }
+
+           while(bcount>=0 && bcount<navbutts.length){
+                if(navbutts[bcount] === ele.target){
+                    found = true;
+                }
+                if(found){
+                    $(navbutts[bcount]).hide();
+                }
+                if(LR){
+                    bcount++;
+                }else{
+                    bcount--;
+                }
+            }
+
+            adjustSideNav(clkSide);
+            viewSelector(ele.target);
+            //loop throught the click on side nav to flip the buttons in the opposite
+
+        }
+
+        var adjustSideNav = (cSide)=>{
+            for (vbname in qdom.quote.nav.viewbuttons){
+                let vbs = document.getElementsByClassName(qdom.quote.nav.viewbuttons[vbname]);
+                if(vbs[0].parentNode === cSide){
+                    if($(vbs[0]).is(":visible")){
+                        $(vbs[1]).hide();
+                    }else{
+                        $(vbs[1]).show();
+                    }
+                }else{
+                    if($(vbs[1]).is(":visible")){
+                        $(vbs[0]).hide();
+                    }else{
+                        $(vbs[0]).show();
+                    }
+
+                }
+            }
+        }
+        var viewSelector = (viewButt)=>{
+            var found = false;
+            for(let v in qdom.quote.main.views){
+                if(!found){
+                    for(let x=0;x<viewButt.classList.length;x++){
+                        if(viewButt.classList[x].indexOf(v) != -1){
+                            $(document.getElementById(qdom.quote.main.views[v])).show();
+                            found = true;
+                        }
+                    }
+                }else{
+                    $(document.getElementById(qdom.quote.main.views[v])).hide();
+                }
+            }
+        }
+        ///END VIEW NAV/////////////////////////////////////////////////////////
+
+
+        /* ESTIMATE VIEW /////////////////////////////////////////////////////////////////////
+
+            Goal is to create a template for quote
+             estimates. The only things that are templated
+             will be:
+                - items (place to gather the main items)
+                - modifiers (place to modify the main
+                  items).
+            
+            - Item Modification - To apply modifiers to
+                an item, the user will select the item
+                from the main list. Upon selection, the
+                available modifiers will be shown to the
+                right of the list.
+            - Toggle Modifiers - Usually there will be a
+                few ways to modify products. Built in to
+                the modifiers module will be a top bar
+                showing the optional modifiers. The user
+                will select from the row, and modifications
+                for that category will be show.
+        */
+        /* MAIN ITEMS    //////////////////////////////////////////
+
+        */
+
+        var resetItemSelectors = (tab)=>{
+            if(tab){
+                let rows = tab.getElementsByTagName('tr'); //get a list of the rows
+                for(x=0;x<tab.children.length;x++){
+                    tab.children[x].removeEventListener('click',quoteItemSelect)
+                    tab.children[x].addEventListener('click',quoteItemSelect);
+                }
+            }else{
+                console.log("No table was passed...")
+            }
+        }
+
+        /* Item Selector
+            Event placed each row in the item input table. When a
+             row is selected, it loads that items modifiers to the
+             modification module for editing.
+        */
+        var quoteItemSelect = (ele)=>{
+            let row = ele.target.parentNode;
+
+            console.log(row.children[0].innerText);
+        }
+
+        ///////////////////////////////////////////////////////////
+
+        /* MODIFIERS    ///////////////////////////////////////////
+
+        */
+        /* Modifier Nav Setup
+            PASS:
+             - view - object with the views and nav info
+        */
+        var setupModifySelectors = (view)=>{
+            var mnavbar = document.getElementById(view.nav.bar);
+
+            for(x=0;x<mnavbar.children.length;x++){
+                mnavbar.children[x].addEventListener('click',modifyViewSelect);
+            }
+        }
+
+        var modifyViewSelect = (ele)=>{
+            for(butt in qdom.quote.main.modifier.nav.buttons){
+                if(ele.target === document.getElementById(qdom.quote.main.modifier.nav.buttons[butt])){
+                    $(document.getElementById(qdom.quote.main.modifier.views[butt])).show();
+                }else{
+                    $(document.getElementById(qdom.quote.main.modifier.views[butt])).hide();
+                }
+            }
+        }
+        ///////////////////////////////////////////////////////////
+
+        ///////////////////////////////////////////////////////////////////////////////////////
+
+
+
+        setSideNavButtons();
+        resetItemSelectors(document.getElementById(qdom.quote.main.estimate.itemtable));
+        setupModifySelectors(qdom.quote.main.modifier);
+    </script>
+</html>

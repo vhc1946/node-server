@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include('./heads/MainHead')%>
+
+    </head>
+    <body>
+      <%- include('./headers/MainNav')%>
+      <div>
+        <a id="getList" href="test.html?s">list</a>
+        <button id="sync">sync</button>
+      </div>
+    </body>
+    <script>
+      console.log(1);
+      /*
+      var storer={};
+      document.getElementById("getList").addEventListener('click',(ele)=>{
+        $.post('http://localhost:8010/proxy/api/clonelist',{user:'VOGCH',pswrd:'vogel123'},(data,status)=>{
+          console.log(data);
+          if(data){
+            for(let st in data){
+              $.post('http://localhost:8010/proxy/api/clonedb',data[st],(dataa,status)=>{
+                storer[st]=dataa;
+              });
+            }
+          }
+        });
+      });
+      console.log(storer);
+      var cloner=(file)=>{
+      }
+      document.getElementById("sync").addEventListener('click',(ele)=>{
+        $.post('http://localhost:8010/proxy/api/clonedb',{user:'VOGCH',pswrd:'vogel123'},(data,status)=>{
+          console.log(data);
+        });
+
+      });
+      */
+    </script>
+</html>

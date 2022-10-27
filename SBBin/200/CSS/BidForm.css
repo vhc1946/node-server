@@ -1,0 +1,176 @@
+
+#Bid_Tool_Bar{
+    float:right;
+    position: fixed;
+    right:0px;
+    font-size: 17pt;
+    height: 70%;
+    display: inline-flex;
+}
+#Bid_Tool_Button{
+    width:30px;
+    background-color: rgb(57, 138, 231);;
+    font-size:30pt;
+    color: rgb(255, 255, 255);
+    padding-top:5px;
+    padding-bottom:5px;
+}
+#Bid_Action_Bar{
+    background-color: rgb(57, 138, 231);
+    display:flex;
+    text-align: center;
+}
+#Bid_Action_Bar a{
+    flex:1 100%;
+    text-decoration: none;
+}
+#Bid_Action_Bar a:hover{
+    background-color: rgb(75, 74, 74);
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+.Bid_Tool_Header{
+    padding:3px;
+    font-size: 20pt;
+    background-color: rgb(75, 74, 74);
+    color: rgb(255, 255, 255);
+}
+
+#Bid_LaborRateTable div{
+    display: flex;
+}
+#Bid_LaborRateTable div div{
+    width:200px;
+    text-align: right;
+}
+#Bid_LaborRateTable div input{
+    font-size: inherit;
+    width: 200px;
+}
+
+#Bid_MarginTable div{
+    display: flex;
+}
+#Bid_MarginTable div div{
+    width:200px;
+}
+#Bid_MarginTable div input{
+    font-size: inherit;
+    width:200px;
+}
+
+#Bid_Info_Container{
+    margin:20px;
+    width:100%;
+    font-size:17pt;
+}
+
+#Bid_Info div{
+    display: flex;
+}
+#Bid_Info div div{ /*Data name*/
+    width:200px;
+}
+#Bid_Info div input{ /*Data value*/
+    font-size: inherit;
+    width:200px;
+}
+
+/*  BID COST SECTION STYLES*/
+
+.Bid_Cost_Section{
+    margin:20px;
+}
+
+/*SECTION ROW*/
+.Bid_Cost_Section_Row{
+    display:flex;
+}
+.Bid_Cost_Section_Row div{
+    border:1px solid rgb(75, 74, 74);
+    font-size:15pt;
+}
+.Bid_Cost_Section_Row:nth-child(1) div{/*SECTION HEADER ROW*/
+    background-color: rgb(75, 74, 74);
+    color: rgb(255, 255, 255);
+    font-size: 20pt;
+    text-align: center;
+}
+.Bid_Cost_Section_Row:nth-child(n+2) div{
+    background-color: rgb(57, 138, 231);
+}
+/*SECTION "CELLS"*/
+.Bid_Cost_Section_Row div{
+    width:150px;
+}
+.Bid_Cost_Section_Row div:last-child{
+    margin-right:20px;
+}
+.Bid_Cost_Section_Row div:first-child{/*ROW TITLE*/
+    width:400px;
+}
+.Bid_Cost_Section_Row div:nth-child(n+2){
+    text-align: center;
+}
+.Bid_Cost_Section_Row div input{
+    background-color: rgb(234, 241, 125);
+    width:inherit;
+    text-align: inherit;
+    font-size: inherit;
+    height:inherit;
+    border:none;
+    margin:0px;
+    padding:2px 0px 2px 0px;
+}
+.Bid_Cost_Section_Row div select{
+    width:inherit;
+    text-align: inherit;
+    font-size: inherit;
+    height:inherit;
+    margin:0px;
+}
+/***************************/
+
+
+/*COST SUMMARY*/
+#Bid_Cost_Sumry{/*Summary Container*/
+    margin:20px;
+}
+#Bid_Cost_Sumry>div{/*Summary rows*/
+    display: flex;
+    font-size: 17pt;
+
+    margin-bottom: 10px;
+}
+#Bid_Cost_Sumry>div:first-child{
+    margin-bottom:0px;
+}
+#Bid_Cost_Sumry>div:first-child>div{
+    background-color: rgb(75, 74, 74);
+    color: rgb(255, 255, 255);
+    border: 1px solid rgb(75, 74, 74);
+    font-size: inherit;
+}
+#Bid_Cost_Sumry>div>div{/*Cost Summary Value cells*/
+    width:150px;
+}
+#Bid_Cost_Sumry>div>div:nth-child(n+2){
+    text-align: center;
+}
+#Bid_Cost_Sumry>div>div:first-child{ /*Cost Summary Title*/
+    width: 500px;
+}
+
+#Bid_Labor_Sumry>div{
+    border: 1px solid rgb(78, 78, 189);
+}
+#Bid_Material_Sumry>div{
+    border: 1px solid rgb(88, 145, 83);
+}
+#Bid_Equip_Sumry>div{
+    border: 1px solid rgb(226, 151, 81);
+}
+#Bid_Sub_Sumry>div{
+    border: 1px solid rgb(173, 85, 190);
+}
+/***************************/
